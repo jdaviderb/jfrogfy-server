@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       namespace :v1 do
         get "search/:keyword", to: "search#index"
         get "playlists/:id", to: "playlists#show"
+        get "albums/:id", to: "albums#show"
+        get "artists/:id", to: "artists#show"
         get "home", to: "home#index"
       end
     end
