@@ -2,7 +2,7 @@
 
 class CacheMiddleware
   CACHE_KEY = "JFROGFY_CACHE"
-  CACHE_EXPIRE = 10.minutes
+  CACHE_EXPIRE = 15.minutes
 
   def initialize(app)
     @app = app
@@ -32,7 +32,7 @@ class CacheMiddleware
     cache_expire_date = @caches_expires[cache_key]
 
     if cache_expire_date.present? && cache_expire_date <= Time.current
-      @caches.clear
+      @caches[cache_key] = nil
     end
 
     @caches[cache_key]
