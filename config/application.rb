@@ -46,6 +46,6 @@ module Server
     config.autoload_paths << Rails.root.join("app/middleware")
     config.autoload_paths << Rails.root.join("app/serializers")
     config.autoload_paths << Rails.root.join("app/services")
-    config.middleware.insert_before 0, CacheMiddleware
+    config.middleware.insert_before 1, CacheMiddleware
   end
 end
