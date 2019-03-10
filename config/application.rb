@@ -12,6 +12,7 @@ require "action_mailer/railtie"
 # require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
+require_relative "../lib/cache_middleware"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -42,7 +43,9 @@ module Server
 
     config.api_only = true
     config.active_job.queue_adapter = :sidekiq
+    config.autoload_paths << Rails.root.join("app/middleware")
     config.autoload_paths << Rails.root.join("app/serializers")
     config.autoload_paths << Rails.root.join("app/services")
+    config.middleware.insert_before 0, CacheMiddleware
   end
 end

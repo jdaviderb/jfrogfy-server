@@ -6,7 +6,6 @@ module Api
       class SearchController < ApplicationController
         def index
           spotify_search = ::Spotify::Search.new
-
           render json: { data: spotify_search.search(params[:keyword]) }
         end
       end
