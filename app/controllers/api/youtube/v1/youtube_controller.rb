@@ -12,11 +12,12 @@ module Api
 
           search = "#{song} #{artist}"
 
-          youtube_search_result = ::Youtube::Search.new.search(search)[0][:id]
+          result = ::YoutubeAudio::Search.new(search).results.first.formats.first
+
 
           render json: {
-            id: youtube_search_result,
-            video: ::Youtube::Video.new.get_video(youtube_search_result)
+            id: result.url,
+            video: result.url
           }
         end
       end
